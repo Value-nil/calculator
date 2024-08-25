@@ -80,6 +80,7 @@ int main(int argc, char* argv[]){
 	strcpy(expression, argv[1]);
 	float result = calculateExpression(expression);
 	printf("Result: %f\n", result);
+	free(expression);
 
 	return 0;
 }
