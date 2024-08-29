@@ -21,7 +21,7 @@ const operation operations[4] = {
 
 bool hasBetterPrecedence(char toCheck, int* precedence){ //check if current index references an operator and if it has a lower precedence
 	for(int i = 0; i < 4; i++){
-		if(operations[i].key == toCheck && operations[i].precedence < *precedence){
+		if(operations[i].key == toCheck && operations[i].precedence <= *precedence){
 			*precedence = operations[i].precedence;
 			return true;
 		}
@@ -65,9 +65,11 @@ float calculateExpression(char* expression){
 	expression[operatorIndex] = '\0';
 	float firstOperand = calculateExpression(expression);
 	float secondOperand = calculateExpression(expression+operatorIndex+1);
-	
-	return (*toCallFunction)(firstOperand, secondOperand);
+	float result = (*toCallFunction)(firstOperand, secondOperand);
+	printf("Result so far is: %f\n", result);
+	return result;
 }
+
 
 
 
